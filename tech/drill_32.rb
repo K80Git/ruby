@@ -5,7 +5,17 @@ puts "----------------------------------------"
 =begin 
 問題
 
+任意の文字列が "xyz"を含み、
+xyzの前にピリオド（.）がない場合はTrueを出力し、
+ピリオド（.）がある場合はFalseを出力するメソッドを作成しましょう。
 
+※わからない場合はAPIを利用して問題を解きましょう。
+参考URL: https://docs.ruby-lang.org/ja/search/
+
+出力例：
+xyz_there('abcxyz') → True
+xyz_there('abc.xyz') → False
+xyz_there('xyz.abc') → True
 
 =end
 #----------------------------------------
@@ -13,8 +23,19 @@ puts "----------------------------------------"
 #----------------------------------------
 
 
+def xyz_there(str)
+  if str.include?(".xyz")
+    puts "False"
+  elsif str.include?("xyz")
+    puts "True"
+  else
+    puts "False"
+  end
+end
 
+str ="abcxz"
 
+xyz_there(str)
 
 
 
