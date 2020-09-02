@@ -112,10 +112,7 @@ def registration_student
   math = gets.to_i
   puts "英語の得点は？"
   engl = gets.to_i
-  def inisilaize(name,age,japa,math,engl)
 
-
-  end
 end
 
 def show_student_name
