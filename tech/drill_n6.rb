@@ -23,7 +23,7 @@ puts "----------------------------------------"
 #----------------------------------------
 def weather_forecast
   weather = "晴れ"
-  return "明日の天気は#{wheather}です"
+  return "明日の天気は#{weather}です"
 end
 
 puts weather_forecast
