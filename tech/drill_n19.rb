@@ -4,6 +4,23 @@ puts "----------------------------------------"
 #----------------------------------------
 =begin 
 問題
+任意の文字列で
+"hi"がいくつあるか数えてその数を出力するメソッドを作りましょう。
+
+出力例：
+count_hi('abc hi ho') → 1
+count_hi('ABChi hi') → 2
+count_hi('hihi') → 2
+
+ヒント
+scanを使用しましょう。
+
+scan
+scanは、対象の要素から引数で指定した文字列を検索して配列として返すメソッドです。
+
+
+"foobarbazfoobarbaz".scan("ba")
+=> ["ba", "ba", "ba", "ba"]
 
 
 
@@ -12,7 +29,13 @@ puts "----------------------------------------"
 puts "----------------------------------------"
 #----------------------------------------
 
+string = 'ABC'
+def count_hi(string)
+  counter = string.scan("hi").length
+  puts counter
+end
 
+count_hi(string)
 
 
 

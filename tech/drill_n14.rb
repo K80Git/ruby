@@ -5,6 +5,31 @@ puts "----------------------------------------"
 =begin 
 問題
 
+数値numが1以上10以下の範囲であればTrueを出力します。
+outside_modeがTrueであった場合は
+数値が0以下、または11以上であってもTrueを出力します。
+それ以外はFalseを出力するメソッドを論理演算子&&と||を用いて作りましょう。
+
+出力例：
+in1to10(5,false) →True
+in1to10(11,false) →False
+in1to10(11,true) →True
+
+ヒント
+ 論理演算子
+2つ以上の条件式を組み合わせた複雑な条件式を記述するために論理演算子&&と||を使います。
+
+以下のように使用します。
+
+
+# aもbもtrueの場合にtrue
+a && b 
+
+# aかbのどちらかがtrueの場合にtrue
+a || b 
+なおRubyの論理演算子では、左辺から右辺に条件式を評価します。もし式全体の評価が確定した場合は、その時点で残りの評価を行いません。
+
+したがって、上の例で言えば、a&&bにおいてaがfalseの時点で全体がfalseと確定するため、bの判定は行いません。a||bでは、aがtrueの時点で全体がtrueと確定するため、bの判定は行いません。
 
 
 =end
@@ -12,9 +37,20 @@ puts "----------------------------------------"
 puts "----------------------------------------"
 #----------------------------------------
 
+def in1to10(num,otsdeMd)
+  if otsdeMd == true
+    puts "True"
+  elsif num >= 1 && num <= 10
+    puts "True"
+  else
+    puts "False"
+  end
+end
 
+num = 11
+otsdeMd = false
 
-
+in1to10(num,otsdeMd)
 
 
 
@@ -23,6 +59,14 @@ puts "----------------------------------------"
 #----------------------------------------
 =begin 
 解説
+
+def in1to10(num, outside_mode)
+  if (num >= 1 && num <= 10) || outside_mode
+    puts "True"
+  else
+    puts "False"
+  end
+end
 
 
 =end
