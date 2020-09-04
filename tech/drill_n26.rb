@@ -5,6 +5,39 @@ puts "----------------------------------------"
 =begin 
 問題
 
+任意の文字列の最後の2文字を3回繰り返し
+出力するメソッドを作りましょう。
+
+※わからない場合はAPIを利用して問題を解きましょう。
+参考URL: https://docs.ruby-lang.org/ja/search/
+
+出力例：
+extra_end('Hello') → 'lololo'
+extra_end('ab') → 'ababab'
+extra_end('Hi') → 'HiHiHi'
+
+ヒント
+slice!メソッドを使いましょう。
+
+ slice
+sliceメソッドを用いることで、配列や文字列から指定した要素を取り出すことができます。
+
+# 配列を作成します
+array = [0,1,2,3,4,5,6]
+
+# 配列から引数で指定した要素をsliceします
+ele1 = array.slice(1)
+puts ele1
+#=> 1
+
+# 配列番号1から4つ分の要素をsliceします
+ele2 = array.slice(1,4)
+puts ele2
+#=> 1 2 3 4
+
+# 配列はもとのままです
+puts array 
+#=> [0,1,2,3,4,5,6]
 
 
 =end
@@ -12,8 +45,12 @@ puts "----------------------------------------"
 puts "----------------------------------------"
 #----------------------------------------
 
+def extra_end(str)
+  puts str.slice(str.length-2,2)*3
+end
 
-
+str = "gaeklegtjlejgnb"
+extra_end(str)
 
 
 
@@ -23,7 +60,13 @@ puts "----------------------------------------"
 #----------------------------------------
 =begin 
 解説
-
+def extra_end(str)
+  char_num = str.length
+  right2 = str.slice(char_num - 2, 2)
+  puts right2 * 3
+end
+解説
+たとえば、extra_end('Hello')でメソッドを呼び出した場合、char_num = 5となり、right2 = str.slice(3,2)になります。slice(3,2)は配列番号（インデックス）3つ目から数えて2つ分の要素を切り取ります。今回の場合、切り取られた結果loが残り、right2 = loとなります。最終的に、right2 * 3、つまりlololoと出力されます。
 
 =end
 #----------------------------------------
