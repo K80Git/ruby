@@ -1,87 +1,75 @@
 =begin
 問題
-
-スペース区切りで2つの整数が入力されるので、その区間の整数を全て表示してください。
+1行目の文字が、2行目の文字列の中に何個出現するかをカウントして出力してください。
 
 ▼　下記解答欄にコードを記入してみよう
 
 入力される値
 入力は以下のフォーマットで与えられます。
 
-a b
+c
+s
 
 
 入力値最終行の末尾に改行が１つ入ります。
 文字列は標準入力から渡されます。 標準入力からの値取得方法はこちらをご確認ください
 期待する出力
-a 以上 b 以下の間の全ての整数を、改行区切りで表示してください。
+文字列 s の中に、文字 c が出現する個数を数えて出力してください。
 
 最後は改行し、余計な文字、空行を含んではいけません。
 
 条件
 すべてのテストケースにおいて、以下の条件を満たします。
 
-0 ≦ a ≦ b ≦ 100
+c は1つの文字
+1 ≦ (文字列 s の長さ) ≦ 30
+c, s は、半角文字で構成された文字列
 
 入力例1
-0 10
+A
+abdeeAAbAAAbfde
 
 出力例1
-0
-1
-2
-3
-4
 5
-6
-7
-8
-9
-10
 
 入力例2
-5 10
+1
+abc123
 
 出力例2
-5
-6
-7
-8
-9
-10
+1
 
 入力例3
-3 3
+5
+122333444455555
 
 出力例3
-3
+5
 
 =end
 puts "回答--------------"
 
-count = gets.split(" ")
+key = gets.chomp
+line = gets.chomp
+leng = line.length
 
-a = count[0].to_i
-b = count[1].to_i
+count = 0
 
-if a == b
-  puts a
-else
-  for i in a..b
-    puts i
+for i in 0..leng
+  if line[i] == key
+    count += 1
   end
 end
 
-
+puts count
 
 
 puts "解答--------------"
 =begin 
 
-nums = gets.chomp.split(' ')
+query = gets.chomp
+source = gets.chomp
 
-for i in nums[0]..nums[1]
-  puts i
-end
+puts source.count(query)
 
 =end
