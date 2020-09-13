@@ -83,54 +83,68 @@ bord = []
   bord.push(temp)
 end
 
+right = []
+#1行目左角
+if bord[0][1] == "#" && bord[1][0]=="#"
+  temp=[0,0]
+  right.push(temp)
+end
+
+#1行目右角
+if bord[0][w-1] =="#" && bord[1][w]=="#"
+  temp=[0,w]
+  right.push(temp)
+end
+
+#最終行左角
+if bord[h][1] == "#"&& bord[h-1][0]=="#"
+  temp=[h,0]
+  right.push(temp)
+end
+
+#最終行右角
+if bord[h][w-1] =="#" && bord[h-1][w]=="#"
+  temp=[h,w]
+  right.push(temp)
+end
+
 #1行目について
-for i in 1..w
-  #左角
-  if bord[0][1] == "#"&& bord[1][0]="#"
-    puts "0 0"
+for i in 1..(w-1)
+  if bord[1][w] == "#" && (bord[0][i-1] == "#" && bord[0][i+1] == "#")
+    temp=[0,w]
+    right.push(temp)
   end
-  #右角
-  if bord[0][w-1] =="#" && bord[1][w]="#"
-    puts "0 #{w}"
-  end
-  #中央
-  if bord[1][w] == "#" && (bord[0][w-1] == "#" && bord[0][w+1] == "#")
-    puts "0 #{w}"
+  if bord[h-1][i] == "#" && (bord[h][i-1] == "#" && bord[h][i+1] == "#")
+    puts "#{h} #{w}"
   end
 end
 
-#最終行について
-for i in 1..w
-  #左角
-  if bord[h][1] == "#"&& bord[h-1][0]="#"
-    puts "0 0"
+#左列
+for i in 1..(h-1)
+  if bord[i][1] =="#" && bord[i-1][0] =="#" &&bord[i+1][0] =="#" 
+    temp=[i,0]
+    right.push(temp)
   end
-  #右角
-  if bord[h][w-1] =="#" && bord[h-1][w]="#"
-    puts "0 #{w}"
-  end
-  #中央
-  if bord[h-1][w] == "#" && (bord[h][w-1] == "#" && bord[h][w+1] == "#")
-    puts "0 #{w}"
+  if bord[i][w-1] =="#" && bord[i-1][w] =="#" &&bord[i+1][w] =="#" 
+    temp=[i,w]
+    right.push(temp)
   end
 end
-
-
-
-
-
-
-if bord[h-1][0] =="#" && bord[h][1]="#"
-  puts "#{h} 0"
-end
-
-if bord[h-1][w] =="#" && bord[h][w-1]="#"
-  puts "#{h} #{w}"
-end
-
 
 for i in 1..(h-1)
-  for j in 
+  for j in 1..(w-1)
+    if (bord[i][j-1]=="#" && bord[i][j+1]=="#")&&(bord[i-1][j]=="#" && bord[i+1][j]=="#")
+      temp=[i,j]
+      right.push(temp)
+    end
+  end
+end
+
+right.sort!
+
+right.each do |r|
+  puts "#{r[0]} #{r[1]}"
+end
 
 puts "解答--------------"
 =begin 
