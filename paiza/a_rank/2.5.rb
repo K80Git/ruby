@@ -72,14 +72,63 @@ str_x = str[0].to_i
 str_y = str[1].to_i
 count = str[2].to_i
 xy = [str_x,str_y]
-
-
+direction = "N"
 
 dirs_array =[]
 (1..count).each do
   rl = gets.chomp
   dirs_array.push(rl)
 end
+
+dirs_array.each do |rl|
+  if direction == "N"
+    if rl =="R"
+      xy[0] += 1
+      direction = "E"
+      puts "#{xy[0]} #{xy[1]}"
+    else
+      xy[0] -= 1
+      direction = "W"
+      puts "#{xy[0]} #{xy[1]}"
+    end
+  elsif direction == "W"
+    if rl =="R"
+      xy[1] -= 1
+      direction = "N"
+      puts "#{xy[0]} #{xy[1]}"
+    else
+      xy[1] += 1
+      direction = "S"
+      puts "#{xy[0]} #{xy[1]}"
+    end
+  elsif direction == "S"
+    if rl =="R"
+      xy[0] -= 1
+      direction = "W"
+      puts "#{xy[0]} #{xy[1]}"
+    else
+      xy[0] += 1
+      direction = "E"
+      puts "#{xy[0]} #{xy[1]}"
+    end
+  elsif direction == "E"
+    if rl =="R"
+      xy[1] += 1
+      direction = "S"
+      puts "#{xy[0]} #{xy[1]}"
+    else
+      xy[1] -= 1
+      direction = "N"
+      puts "#{xy[0]} #{xy[1]}"
+    end
+  end
+end
+
+
+
+
+
+=begin
 
 def east(rl,xy,hogaku)   # rl=E
   if rl == "R"
@@ -177,6 +226,7 @@ dirs_array.each do |rl|
   print "最終値：#{hogaku}\n"
 
 end
+=end
 
 
 
