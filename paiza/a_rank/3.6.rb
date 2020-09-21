@@ -5,15 +5,11 @@
 =end
 puts "回答--------------"
 
-i = 0
-
-while i >= -5 do
+i = 5
+while i <= 10 do
   puts i
-  i -= 1
-end
-
-
-puts i
+  i += 1
+end 
 
 puts "解答--------------"
 =begin 

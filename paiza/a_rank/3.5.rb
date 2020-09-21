@@ -116,65 +116,176 @@ L 1
 
 =end
 puts "回答--------------"
+joken = gets.chomp.split(" ")
+h = joken[0].to_i
+w = joken[1].to_i
+sy = joken[2].to_i
+sx = joken[3].to_i
+n = joken[4].to_i
+d = "N"
 
-map =[[".", ".", "#", ".", ".", ".", ".", ".", "#", "."], [".", ".", ".", ".", ".", ".", ".", ".", ".", "."], ["#", "#", ".", "#", ".", ".", ".", ".", ".", "."], ["#", ".", "#", "#", ".", ".", ".", ".", "#", "."], [".", "#", "#", ".", "#", ".", ".", ".", ".", "."], [".", ".", ".", ".", ".", ".", ".", ".", "#", "."], [".", "#", ".", ".", ".", ".", ".", ".", "#", "."], [".", "#", ".", ".", ".", ".", ".", ".", ".", "."], [".", ".", ".", "#", ".", ".", ".", ".", ".", "."], ["#", ".", "#", ".", ".", ".", ".", ".", ".", "."]]
-
-map.each do|m|
-  print "#{m}\n"
+map = []
+(1..h).each do
+  num = gets.chop.split("")
+  map.push(num)
 end
 
-d= "N"
-m = ["L",2]
-w=10
-sy = 1
-sx = 4
+move =[]
+(1..n).each do
+  num = gets.chomp.split(" ")
+  num = [num[0].to_s,num[1].to_i]
+  move.push(num)
+end
 
-moving_array=[]
-if d == "N"
-  if m[0] == "R"
-    i = sx
-    while i < (sx+m[1]) do
-      if i > w
-        num = [sy,w]
-        moving_array.push(num)
-        moving_array.push("Stop")
-        break
-      elsif map[sy][i] == "#"
-        num=[sy,(i-1)]
-        moving_array.push(num)
-        moving_array.push("Stop")
-        break
-      else
-        i += 1
+move.each do |m|
+  if d == "N"
+    if m[0] == "R"
+      i =0
+      i = sx
+      while i != (sx+m[1]) do
+        if i > w
+          break
+        elsif map[sy][i] == "#"
+          break
+        else
+          map[sy][i] = "*"
+          i += 1
+        end
       end
-    end
-    sx = i
-    num = [sy,sx]
-    moving_array.push(num)
-    d = "E"
-  else
-    i = sx
-    while i > (sx-m[1]) do
-      if i < 0
-        num = [sy,0]
-        moving_array.push(num)
-        moving_array.push("Stop000")
-        break
-      elsif map[sy][i] == "#"
-        num=[sy,(i+1)]
-        moving_array.push(num)
-        moving_array.push("Stop###")
-        break
-      else
-        i -= 1
+      sx = i
+      d = "E"
+    else
+      i =0
+      i = sx
+      while i != (sx-m[1]) do
+        if i < 0
+          break
+        elsif map[sy][i] == "#"
+          break
+        else
+          map[sy][i] = "*"
+          i -= 1
+        end
       end
+      sx = i
+      d = "W"
     end
-    sx = i
-    d = "W"
-    num = [sy,sx]
-    moving_array.push(num)
+  elsif d == "S"
+    if m[0] == "R"
+      i =0
+      i = sx
+      while i != (sx-m[1]) do
+        if i < 0
+          break
+        elsif map[sy][i] == "#"
+          break
+        else
+          map[sy][i] = "*"
+          i -= 1
+        end
+      end
+      sx = i
+      d = "W"
+    else
+      i =0
+      i = sx
+      while i != (sx+m[1]) do
+        if i > w
+          break
+        elsif map[sy][i] == "#"
+          break
+        else
+          map[sy][i] = "*"
+          i += 1
+        end
+      end
+      sx = i
+      d = "E"
+    end
+  elsif d == "E"
+    if m[0] == "R"
+      i =0
+      i = sy
+      while i != (sy+m[1]) do
+        if i > h
+          break
+        elsif map[i][sx] == "#"
+          break
+        else
+          map[i][sx] = "*"
+          i += 1
+        end
+      end
+      sy = i
+      d = "S"
+    else
+      i =0
+      i = sy
+      while i != (sy-m[1]) do
+        if i < 0
+          break
+        elsif map[i][sx] == "#"
+          break
+        else
+          map[i][sx] = "*"
+          i -= 1
+        end
+      end
+      sy = i
+      d = "N"
+    end
+  elsif d == "W"
+    if m[0] == "R"
+      i =0
+      i = sy
+      while i != (sy-m[1]) do
+        if i < 0
+          break
+        elsif map[i][sx] == "#"
+          break
+        else
+          map[i][sx] = "*"
+          i -= 1
+        end
+      end
+      sy = i
+      d = "N"
+    else #m == "L"
+      i = sy
+      while i != (sy+m[1]) do
+        if i > h
+          break
+        elsif map[i][sx] == "#"
+          break
+        else
+          map[i][sx] = "*"
+          i += 1
+        end
+      end
+      sy = i
+      d = "S"
+    end
   end
 end
+
+if map[sy][sx] !="#"
+  map[sy][sx]= "*"
+end
+
+map.each_with_index do |m,i|
+  if i == (map.length.to_i - 1) 
+    m.each do |s|
+      print s
+    end
+  else
+    m.each do |s|
+      print s
+    end
+    print "\n"
+  end
+end
+
+
 
 puts "解答--------------"
 =begin 
