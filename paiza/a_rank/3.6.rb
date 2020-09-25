@@ -194,7 +194,6 @@ for i in 1..n
   move_sub.push(moving)
 end
 
-
 move = []
 if move_sub[0][1] != 0
   ar_mus = move_sub[0][1]
@@ -211,7 +210,6 @@ while j != n-1
   move.push(subu)
   j += 1
 end
-print move
 
 arrays =[]
 move.each do |m|
@@ -219,16 +217,16 @@ move.each do |m|
     i =0
     i = sy
     while i != (sy-m[1]) do
-      if i > h
+      if i < 0
         arrays.push("Stop")
         break
       elsif map[i][sx] == "#"
         arrays.push("Stop")
         break
       else
-        i -= 1
         num = [i,sx]
         arrays.push(num)
+        i -= 1
       end
     end
     sy = i
@@ -337,9 +335,6 @@ move.each do |m|
         elsif map[i][sx] == "#"
           arrays.push("Stop")
           break
-        elsif  map[i][sx] ==nil
-          arrays.push("Stop")
-          break
         else
           num = [i,sx]
           arrays.push(num)
@@ -377,9 +372,6 @@ move.each do |m|
         elsif map[i][sx] == "#"
           arrays.push("Stop")
           break
-        elsif  map[i][sx] == nil
-          arrays.push("Stop")
-          break
         else
           num = [i,sx]
           arrays.push(num)
@@ -392,6 +384,9 @@ move.each do |m|
   end
 end
 
+
+
+arrays.delete_at(0)
 arrays.each do |ar|
   if ar =="Stop"
     puts "Stop"
