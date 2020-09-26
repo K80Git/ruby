@@ -171,15 +171,15 @@ puts "回答--------------"
 
 
 joken = gets.chomp.split(" ")
-h = joken[0].to_i
-w = joken[1].to_i
+h = joken[0].to_i-1
+w = joken[1].to_i-1
 sy = joken[2].to_i
 sx = joken[3].to_i
 n = joken[4].to_i
 d = "N"
 
 map = []
-(1..h).each do
+(1..h+1).each do
   num = gets.chop.split("")
   map.push(num)
 end
@@ -212,8 +212,19 @@ while j != n-1
 end
 
 arrays =[]
+if map[sy][sx] == "#"
+  arrays.push("Stop")
+  arrays.push("Stop")
+end
+
 move.each do |m|
-  if m[0] == "S"
+  if arrays.last == "Stop"
+    break
+  end
+
+  if d == "Fin"
+    break
+  elsif m[0] == "S"
     i =0
     i = sy
     while i != (sy-m[1]) do
@@ -236,9 +247,11 @@ move.each do |m|
       i = sx
       while i != (sx+m[1]) do
         if i > w
+          d = "Fin"
           arrays.push("Stop")
           break
         elsif map[sy][i] == "#"
+          d = "Fin"
           arrays.push("Stop")
           break
         else
@@ -254,9 +267,11 @@ move.each do |m|
       i = sx
       while i != (sx-m[1]) do
         if i < 0
+          d = "Fin"
           arrays.push("Stop")
           break
         elsif map[sy][i] == "#"
+          d = "Fin"
           arrays.push("Stop")
           break
         else 
@@ -274,9 +289,11 @@ move.each do |m|
       i = sx
       while i != (sx-m[1]) do
         if i < 0
+          d = "Fin"
           arrays.push("Stop")
           break
         elsif map[sy][i] == "#"
+          d = "Fin"
           arrays.push("Stop")
           break
         else
@@ -292,9 +309,11 @@ move.each do |m|
       i = sx
       while i != (sx+m[1]) do
         if i > w
+          d = "Fin"
           arrays.push("Stop")
           break
         elsif map[sy][i] == "#"
+          d = "Fin"
           arrays.push("Stop")
           break
         else
@@ -312,9 +331,11 @@ move.each do |m|
       i = sy
       while i != (sy+m[1]) do
         if i > h
+          d = "Fin"
           arrays.push("Stop")
           break
         elsif map[i][sx] == "#"
+          d = "Fin"
           arrays.push("Stop")
           break
         else
@@ -330,9 +351,11 @@ move.each do |m|
       i = sy
       while i != (sy-m[1]) do
         if i < 0
+          d = "Fin"
           arrays.push("Stop")
           break
         elsif map[i][sx] == "#"
+          d = "Fin"
           arrays.push("Stop")
           break
         else
@@ -350,9 +373,11 @@ move.each do |m|
       i = sy
       while i != (sy-m[1]) do
         if i < 0
+          d = "Fin"
           arrays.push("Stop")
           break
         elsif map[i][sx] == "#"
+          d = "Fin"
           arrays.push("Stop")
           break
         else
@@ -367,9 +392,11 @@ move.each do |m|
       i = sy
       while i != (sy+m[1]) do
         if i > h
+          d = "Fin"
           arrays.push("Stop")
           break
         elsif map[i][sx] == "#"
+          d = "Fin"
           arrays.push("Stop")
           break
         else
@@ -383,8 +410,6 @@ move.each do |m|
     end
   end
 end
-
-
 
 arrays.delete_at(0)
 arrays.each do |ar|
