@@ -5,7 +5,8 @@
 =end
 puts "回答--------------"
 
-puts (0-5).abs
+a = (0..7).to_a
+print a.include?(8)
 
 
 
