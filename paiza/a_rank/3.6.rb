@@ -213,8 +213,7 @@ end
 
 arrays =[]
 if map[sy][sx] == "#"
-  arrays.push("Stop")
-  arrays.push("Stop")
+  map[sy][sx] = "."
 end
 
 move.each do |m|
